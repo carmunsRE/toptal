@@ -1,0 +1,1 @@
+Azure SQL Database hosting the relational model for the final reporting.
