@@ -1,0 +1,10 @@
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\bin\Debug\AzureSQLToptal.dacpac
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\AzureSQLToptal.sqlprojAssemblyReference.cache
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\Model.xml
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\refactor.xml
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\postdeploy.sql
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\predeploy.sql
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\AzureSQLToptal.dll
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\AzureSQLToptal.pdb
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\bin\Debug\AzureSQLToptal.dll
+C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\bin\Debug\AzureSQLToptal.pdb

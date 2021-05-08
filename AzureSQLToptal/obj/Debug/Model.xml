@@ -1,0 +1,3408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.9" DspName="Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+	<Header>
+		<CustomData Category="AnsiNulls">
+			<Metadata Name="AnsiNulls" Value="True" />
+		</CustomData>
+		<CustomData Category="QuotedIdentifier">
+			<Metadata Name="QuotedIdentifier" Value="True" />
+		</CustomData>
+		<CustomData Category="CompatibilityMode">
+			<Metadata Name="CompatibilityMode" Value="130" />
+		</CustomData>
+		<CustomData Category="Reference" Type="Assembly">
+			<Metadata Name="LogicalName" Value="AzureSQLToptal.dll" />
+			<Metadata Name="FileName" Value="C:\USERS\CARLOS PERSONAL\SOURCE\REPOS\AZURESQLTOPTAL\AZURESQLTOPTAL\OBJ\DEBUG\AZURESQLTOPTAL.DLL" />
+			<Metadata Name="AssemblyName" Value="AzureSQLToptal" />
+			<Metadata Name="PermissionSet" Value="SAFE" />
+			<Metadata Name="Owner" Value="" />
+			<Metadata Name="GenerateSqlClrDdl" Value="True" />
+			<Metadata Name="IsVisible" Value="True" />
+			<Metadata Name="IsModelAware" Value="True" />
+			<Metadata Name="SkipCreationIfEmpty" Value="True" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Carlos Personal\source\repos\AzureSQLToptal\AzureSQLToptal\obj\Debug\AzureSQLToptal.pdb" />
+		</CustomData>
+		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
+	</Header>
+	<Model>
+		<Element Type="SqlDatabaseOptions">
+			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsArithAbortOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
+			<Property Name="IsTornPageProtectionOn" Value="False" />
+			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="PageVerifyMode" Value="3" />
+			<Property Name="DefaultLanguage" Value="" />
+			<Property Name="DefaultFullTextLanguage" Value="" />
+			<Property Name="QueryStoreStaleQueryThreshold" Value="367" />
+			<Relationship Name="DefaultFilegroup">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[FactSales].[CategoryID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[DimCategory].[CategoryID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[FactSales].[ChannelID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[DimChannel].[ChannelID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[FactSales].[GeographyID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[DimGeography].[GeographyID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[FactSales].[PurchasedDate]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[DimDate].[DateKey]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[DimDate]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[FactSales].[ResellerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[DimReseller].[ResellerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[DimCategory].[CategoryID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[DimChannel].[ChannelID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[DimGeography].[GeographyID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[DimReseller].[ResellerID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[FactSales].[ID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlUser" Name="[adf_user]">
+			<Property Name="IsWithoutLogin" Value="True" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_DimCategory]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+	
+
+
+	IF OBJECT_ID('DimCategory') IS NOT NULL
+		DROP TABLE DimCategory
+
+	CREATE TABLE DimCategory (
+		 CategoryID [int] identity(1, 1) PRIMARY KEY
+		,Category NVARCHAR(100)
+		,SubCategory NVARCHAR(100)
+		)
+
+	--Get the data from Source table
+	INSERT INTO DimCategory (Category, SubCategory)
+	SELECT DISTINCT Category, SubCategory
+	FROM [staging].[Source_EventCategory]
+
+	
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory].[SubCategory]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="490" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Build_DimCategory]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_DimChannel]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+	
+
+
+	IF OBJECT_ID('DimChannel') IS NOT NULL
+		DROP TABLE DimChannel
+
+	CREATE TABLE DimChannel (
+		 ChannelID [int] identity(1, 1) PRIMARY KEY
+		,Channel NVARCHAR(100)
+		)
+
+	--Get the data from Source table
+	INSERT INTO DimChannel (Channel)
+	SELECT DISTINCT SalesChannel
+	FROM [staging].[Source_SalesChannel]
+
+	
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[Channel]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[Channel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel].[SalesChannel]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="429" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Build_DimChannel]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_DimGeography]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+	
+
+
+	IF OBJECT_ID('DimGeography') IS NOT NULL
+		DROP TABLE DimGeography
+
+	CREATE TABLE DimGeography (
+		 GeographyID [int] identity(1, 1) PRIMARY KEY
+		,Country NVARCHAR(100)
+		,Region NVARCHAR(100)
+		)
+
+	--Get the data from Source table
+	INSERT INTO DimGeography (Country, Region)
+	SELECT DISTINCT Country, Region
+	FROM [staging].[Source_Geography]
+
+	
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Country]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Region]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Country]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Region]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography].[Country]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography].[Region]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="474" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Build_DimGeography]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_DimReseller]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+	
+
+
+	IF OBJECT_ID('DimReseller') IS NOT NULL
+		DROP TABLE DimReseller
+
+	CREATE TABLE DimReseller (
+		 ResellerID [int] identity(1, 1) PRIMARY KEY
+		,Reseller NVARCHAR(100)
+		,Comission float
+		)
+
+	--Get the data from Source table
+	INSERT INTO DimReseller (Reseller, Comission)
+	SELECT DISTINCT Reseller, Comission = cast((RAND(CHECKSUM(NEWID()))*(0.09-0.02)+0.02) as decimal(3,2))
+	FROM [staging].[Source_Reseller]
+
+	
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Comission]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Comission]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Reseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[decimal]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="538" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Build_DimReseller]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_FactSales]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+	
+
+
+	IF OBJECT_ID('FactSales') IS NOT NULL
+		DROP TABLE FactSales
+
+	CREATE TABLE FactSales (
+		 ID [int] identity(1, 1) PRIMARY KEY
+		,ResellerID INT REFERENCES [dbo].[DimReseller](ResellerID)
+		,ChannelID INT REFERENCES [dbo].[DimChannel](ChannelID)
+		,CategoryID INT REFERENCES [dbo].[DimCategory](CategoryID)
+		,GeographyID INT REFERENCES [dbo].[DimGeography](GeographyID)
+		,PurchasedDate INT REFERENCES [dbo].[DimDate](DateKey)
+		,PurchasedTickets INT
+		,TotalAmount MONEY
+		)
+
+	INSERT INTO FactSales
+	SELECT ResellerID
+		  ,ChannelID
+		  ,CategoryID
+		  ,GeographyID
+		  ,PurchasedDate = CAST(REPLACE(fs.PurchasedDate,'-','') AS INT) 
+		  ,PurchasedTickets
+		  ,TotalAmount
+	FROM [staging].[Source_FactSales] fs 
+		JOIN [dbo].[DimReseller] r on fs.Reseller = r.Reseller
+		JOIN [dbo].[DimChannel] ch on fs.SalesChannel = ch.Channel
+		JOIN [dbo].[DimCategory] c on fs.Category = c.Category and fs.SubCategory = c.SubCategory
+		JOIN [dbo].[DimGeography] g on fs.Region = g.Region
+
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[ID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[PurchasedDate]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimDate].[DateKey]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[PurchasedTickets]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[TotalAmount]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[money]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[Channel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Category]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Region]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Region]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[PurchasedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[PurchasedTickets]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[TotalAmount]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1115" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Build_FactSales]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Build_Taxonomy]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRY -- Delete Facts and Dims.
+		BEGIN TRAN
+
+		BEGIN -- RECREATE LOG TABLE 
+			IF OBJECT_ID('dbo.Log_Taxonomy') IS NOT NULL
+				DROP TABLE Log_Taxonomy
+
+			CREATE TABLE Log_Taxonomy (
+				[ID] INT identity(1, 1)
+				,[Status] [varchar](1000)
+				,[Time] [varchar](50)
+				,[Running Date] [date]
+				,[Store Procedure] [varchar](100)
+				)
+		END
+
+		BEGIN -- VARIABLES 
+			DECLARE @TimeStamp VARCHAR(50)
+			DECLARE @Message VARCHAR(500)
+			DECLARE @Flag VARCHAR(5)
+			DECLARE @Error INT
+			DECLARE @Table VARCHAR(100)
+
+			SET @Flag = 1;
+		END
+
+		--Drop old tables
+		BEGIN --Facts
+			SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+
+			SELECT @Message = 'Starting to drop Facts ... %s'
+
+			RAISERROR (
+					@Message
+					,10
+					,1
+					,@TimeStamp
+					)
+			WITH NOWAIT
+
+			INSERT INTO Log_Taxonomy
+			SELECT @Message
+				,@TimeStamp
+				,cast(getdate() AS DATE)
+				,'[dbo].[Build_Taxonomy]'
+
+
+			SET @Table = '... Deleting Table [FactSales]';
+
+			IF EXISTS (
+					SELECT 1
+					FROM sys.objects
+					WHERE object_id = OBJECT_ID(N'[dbo].[FactSales]')
+						AND TYPE IN (N'U')
+					)
+				DROP TABLE [dbo].[FactSales]
+
+
+			SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+
+			SELECT @Message = 'All Facts dropped, dropping Dims ... %s'
+
+			RAISERROR (
+					@Message
+					,10
+					,1
+					,@TimeStamp
+					)
+			WITH NOWAIT
+
+			INSERT INTO Log_Taxonomy
+			SELECT @Message
+				,@TimeStamp
+				,CAST(GETDATE() AS DATE)
+				,'[dbo].[Build_Taxonomy]'
+		END
+
+		BEGIN --Dims
+
+			SET @Table = '... Deleting Table [DimCategory]';
+
+			IF EXISTS (
+					SELECT 1
+					FROM sys.objects
+					WHERE object_id = OBJECT_ID(N'[dbo].[DimCategory]')
+						AND TYPE IN (N'U')
+					)
+				DROP TABLE [dbo].[DimCategory]
+
+
+			SET @Table = '... Deleting Table [DimGeography]';
+
+			IF EXISTS (
+					SELECT 1
+					FROM sys.objects
+					WHERE object_id = OBJECT_ID(N'[dbo].[DimGeography]')
+						AND TYPE IN (N'U')
+					)
+				DROP TABLE [dbo].[DimGeography]
+
+			SET @Table = '... Deleting Table [DimReseller]';
+
+			IF EXISTS (
+					SELECT 1
+					FROM sys.objects
+					WHERE object_id = OBJECT_ID(N'[dbo].[DimReseller]')
+						AND TYPE IN (N'U')
+					)
+				DROP TABLE [dbo].[DimReseller]
+
+			SET @Table = '... Deleting Table [DimChannel]';
+
+			IF EXISTS (
+					SELECT 1
+					FROM sys.objects
+					WHERE object_id = OBJECT_ID(N'[dbo].[DimChannel]')
+						AND TYPE IN (N'U')
+					)
+				DROP TABLE [dbo].[DimChannel]
+			
+
+			-------------******* All Dims Dropped ************
+
+			SELECT @Message = 'All Dims dropped ... %s'
+
+			RAISERROR (
+					@Message
+					,10
+					,1
+					,@TimeStamp
+					)
+			WITH NOWAIT
+
+			INSERT INTO Log_Taxonomy
+			SELECT @Message
+				,@TimeStamp
+				,CAST(GETDATE() AS DATE)
+				,'[dbo].[Build_Taxonomy]'
+		END
+
+		COMMIT TRAN
+	END TRY
+
+	BEGIN CATCH
+		SET @Flag = 0;
+
+		ROLLBACK TRAN
+
+		SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+
+		SELECT @Message = ' Taxonomy has finished whit errors (Roll Back Done)... Error at' + @Table
+
+		RAISERROR (
+				@Message
+				,10
+				,1
+				,@TimeStamp
+				)
+		WITH NOWAIT
+
+		INSERT INTO Log_Taxonomy
+		SELECT @Message
+			,@TimeStamp
+			,CAST(GETDATE() AS DATE)
+			,'[dbo].[Build_Taxonomy]'
+	END CATCH
+
+	IF @Flag = 1 -- Execute the Sprocs that build the taxonomy Dims and Facts 
+	BEGIN
+		BEGIN -- FIRST BUILD DIMS
+			
+			--DimCategory
+			BEGIN TRY
+				EXEC [Build_DimCategory]
+
+				SET @Error = @@ERROR;
+
+				IF @Error = 0
+					EXEC Insert_LogTaxonomy @Error
+						,'Build_DimCategory'
+						,'DimCategory'
+						,'[dbo].[Build_Taxonomy]'
+						,1
+			END TRY
+
+			BEGIN CATCH
+				SELECT @Message = ERROR_MESSAGE();
+
+				EXEC Insert_LogTaxonomy @Error
+					,'Build_DimCategory'
+					,'DimCategory'
+					,'[dbo].[Build_Taxonomy]'
+					,1
+					,@Message;
+			END CATCH
+
+
+			--DimGeography
+			BEGIN TRY
+				EXEC [Build_DimGeography]
+
+				SET @Error = @@ERROR;
+
+				IF @Error = 0
+					EXEC Insert_LogTaxonomy @Error
+						,'Build_DimGeography'
+						,'DimGeography'
+						,'[dbo].[Build_Taxonomy]'
+						,1
+			END TRY
+
+			BEGIN CATCH
+				SELECT @Message = ERROR_MESSAGE();
+
+				EXEC Insert_LogTaxonomy @Error
+					,'Build_DimGeography'
+					,'DimGeography'
+					,'[dbo].[Build_Taxonomy]'
+					,1
+					,@Message;
+			END CATCH
+
+
+			--DimReseller
+			BEGIN TRY
+				EXEC [Build_DimReseller]
+
+				SET @Error = @@ERROR;
+
+				IF @Error = 0
+					EXEC Insert_LogTaxonomy @Error
+						,'Build_DimReseller'
+						,'DimReseller'
+						,'[dbo].[Build_Taxonomy]'
+						,1
+			END TRY
+
+			BEGIN CATCH
+				SELECT @Message = ERROR_MESSAGE();
+
+				EXEC Insert_LogTaxonomy @Error
+					,'Build_DimReseller'
+					,'DimReseller'
+					,'[dbo].[Build_Taxonomy]'
+					,1
+					,@Message;
+			END CATCH
+
+			--DimChannel
+			BEGIN TRY
+				EXEC [Build_DimChannel]
+
+				SET @Error = @@ERROR;
+
+				IF @Error = 0
+					EXEC Insert_LogTaxonomy @Error
+						,'Build_DimChannel'
+						,'DimChannel'
+						,'[dbo].[Build_Taxonomy]'
+						,1
+			END TRY
+
+			BEGIN CATCH
+				SELECT @Message = ERROR_MESSAGE();
+
+				EXEC Insert_LogTaxonomy @Error
+					,'Build_DimChannel'
+					,'DimChannel'
+					,'[dbo].[Build_Taxonomy]'
+					,1
+					,@Message;
+			END CATCH
+
+			
+		END
+
+		BEGIN -- NOW BUILD FACTS
+			SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+
+			SELECT @Message = 'All Dims created, Starting to re build Fact tables ... %s'
+
+			RAISERROR (
+					@Message
+					,10
+					,1
+					,@TimeStamp
+					)
+			WITH NOWAIT
+
+			INSERT INTO Log_Taxonomy
+			SELECT @Message
+				,@TimeStamp
+				,CAST(GETDATE() AS DATE)
+				,'[dbo].[Build_Taxonomy]'
+
+
+
+			BEGIN TRY
+				EXEC [Build_FactSales]
+
+				SET @Error = @@ERROR
+
+				IF @Error = 0
+					EXEC Insert_LogTaxonomy @Error
+						,'Build_FactSales'
+						,'FactSales'
+						,'[dbo].[Build_Taxonomy]'
+						,1
+			END TRY
+
+			BEGIN CATCH
+				SELECT @Message = ERROR_MESSAGE();
+
+				EXEC Insert_LogTaxonomy @Error
+					,'Build_FactSales'
+					,'FactSales'
+					,'[dbo].[Build_Taxonomy]'
+					,1
+					,@Message
+			END CATCH
+		END
+
+		--  ********************************************************************************************************
+		--	**       Do whatever change before this line, the next code shows that the procedure has finished.    **
+		--  ********************************************************************************************************
+
+
+		SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+
+		SELECT @Message = 'Taxonmy process finished... '
+
+		RAISERROR (
+				@Message
+				,10
+				,1
+				,@TimeStamp
+				)
+		WITH NOWAIT
+
+		INSERT INTO Log_Taxonomy
+		SELECT @Message
+			,@TimeStamp
+			,CAST(GETDATE() AS DATE)
+			,'[dbo].[Build_Taxonomy]'
+	END
+
+	SET NOCOUNT OFF
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy].[ID]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy].[Status]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy].[Time]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy].[Running Date]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy].[Store Procedure]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Build_DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Build_DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Build_DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Build_DimChannel]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Build_FactSales]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="23" />
+				<Property Name="Length" Value="6995" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;&#xD;&#xA;-- Build_Taxonomy&#xD;&#xA;CREATE PROCEDURE [dbo].[Build_Taxonomy]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[DimCategory]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimCategory].[CategoryID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimCategory].[Category]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimCategory].[SubCategory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="8" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[DimChannel]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimChannel].[ChannelID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimChannel].[Channel]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="9" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[DimDate]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DateKey]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[Date]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[FullDateUK]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[FullDateUSA]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfMonth]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DaySuffix]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="4" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfWeekUSA]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfWeekUK]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfWeekInMonth]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfWeekInYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfQuarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="3" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[DayOfYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="3" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[WeekOfMonth]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[WeekOfQuarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[WeekOfYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[Month]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[MonthName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[MonthOfQuarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="2" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[Quarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[QuarterName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[Year]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="4" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[YearName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="7" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[MonthYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[MMYYYY]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="6" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[FirstDayOfMonth]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[LastDayOfMonth]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[FirstDayOfQuarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[LastDayOfQuarter]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[FirstDayOfYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[LastDayOfYear]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[IsHolidayUSA]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[IsWeekday]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[HolidayUSA]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[IsHolidayUK]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[HolidayUK]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimDate].[WeekKey]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[DimGeography]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimGeography].[GeographyID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimGeography].[Country]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimGeography].[Region]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="10" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[DimReseller]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimReseller].[ResellerID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimReseller].[Reseller]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[DimReseller].[Comission]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Precision" Value="53" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[float]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="11" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[FactSales]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[ID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[ResellerID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[ChannelID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[CategoryID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[GeographyID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[PurchasedDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[PurchasedTickets]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[FactSales].[TotalAmount]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[money]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="12" />
+			<AttachedAnnotation Disambiguator="3" />
+			<AttachedAnnotation Disambiguator="4" />
+			<AttachedAnnotation Disambiguator="5" />
+			<AttachedAnnotation Disambiguator="6" />
+			<AttachedAnnotation Disambiguator="7" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[Insert_LogTaxonomy]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+		DECLARE @TimeStamp VARCHAR(50)
+		DECLARE @Message VARCHAR(100)
+		DECLARE @Flag VARCHAR(5)
+		
+		SELECT @TimeStamp = CONVERT(VARCHAR(24), GETDATE(), 114)
+		IF @Error<>0 
+			BEGIN
+				SELECT @Message = '!!! ATENTION  ERROR !!! Executing Store Procedure: '+ @Procedure +', ' + REPLACE(REPLACE(REPLACE([text],'''',''),'*ls.',''),'%.','')
+				FROM sys.messages 
+				WHERE message_ID = @Error
+			END
+		ELSE IF @IsMain = 1
+		SELECT @Message = @Table +' done ... %s'
+
+		IF @ErrMess <> ''
+			SET @Message = '!!! ATENTION  ERROR !!! Executing Store Procedure: '+ @Procedure +', ' +  REPLACE(REPLACE(REPLACE(@ErrMess,'''',''),'*ls.',''),'%.','');
+
+		IF @Error<>0 or @IsMain = 1
+		BEGIN
+			RAISERROR (
+					@Message 
+					,10
+					,1
+					,@TimeStamp
+					)
+			WITH NOWAIT
+
+			INSERT INTO Log_Taxonomy
+			SELECT @Message
+				,@TimeStamp
+				,CAST(GETDATE() AS DATE)
+				,@MainSP
+		END
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@Error]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@Procedure]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@IsMain]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@Table]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@ErrMess]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Log_Taxonomy]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Insert_LogTaxonomy].[@MainSP]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@Error]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@Procedure]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@Table]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@MainSP]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@IsMain]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[smallint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[Insert_LogTaxonomy].[@ErrMess]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1102" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Insert_LogTaxonomy]&#xD;&#xA;(&#xD;&#xA;@Error int,&#xD;&#xA;@Procedure varchar(100),&#xD;&#xA;@Table varchar(100),&#xD;&#xA;@MainSP varchar(50),&#xD;&#xA;@IsMain smallint,&#xD;&#xA;@ErrMess varchar(max) = ''&#xD;&#xA;)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[Log_Taxonomy]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Log_Taxonomy].[ID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Log_Taxonomy].[Status]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1000" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Log_Taxonomy].[Time]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Log_Taxonomy].[Running Date]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Log_Taxonomy].[Store Procedure]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK__DimDate__40DF45E345950939]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[DimDate].[DateKey]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[DimDate]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="13" />
+		</Element>
+		<Element Type="SqlView" Name="[dbo].[vReportingSales]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ 
+  SELECT Reseller
+	,Channel
+	,Category
+	,SubCategory
+	,Country
+	,Region
+	,[PurchasedDate]
+	,PurchasedTickets
+	,TotalAmount
+  from [dbo].[FactSales] fs 
+		JOIN [dbo].[DimReseller] r on fs.ResellerID = r.ResellerID
+		JOIN [dbo].[DimChannel] ch on fs.ChannelID = ch.ChannelID
+		JOIN [dbo].[DimCategory] c on fs.CategoryID = c.CategoryID
+		JOIN [dbo].[DimGeography] g on fs.GeographyID = g.GeographyID]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[Reseller]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimReseller].[Reseller]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[Channel]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimChannel].[Channel]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[Category]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimCategory].[Category]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[SubCategory]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimCategory].[SubCategory]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[Country]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimGeography].[Country]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[Region]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[DimGeography].[Region]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[PurchasedDate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[FactSales].[PurchasedDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[PurchasedTickets]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[FactSales].[PurchasedTickets]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vReportingSales].[TotalAmount]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[FactSales].[TotalAmount]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[ResellerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[ChannelID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[CategoryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[GeographyID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimReseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimChannel].[Channel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimCategory].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Country]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DimGeography].[Region]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[PurchasedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[PurchasedTickets]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[FactSales].[TotalAmount]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="4" />
+				<Property Name="Length" Value="455" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;&#xD;&#xA;CREATE VIEW [dbo].[vReportingSales] AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlSchema" Name="[ETL]">
+			<Relationship Name="Authorizer">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[ETL].[ControlTable]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[ETL].[ControlTable].[PartitionID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[ETL].[ControlTable].[SourceTableName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[ETL].[ControlTable].[FilterQuery]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[ETL].[ControlTable].[PartitionDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[ETL]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Alter.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="1001" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Control.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="1038" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Delete.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="4" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Execute.Object].[adf_user].[dbo].[staging].[Build_SourceTables]">
+			<Property Name="Permission" Value="1070" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Grantor">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging].[Build_SourceTables]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Insert.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="1" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Select.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="2" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Update.Schema].[adf_user].[dbo].[staging]">
+			<Property Name="Permission" Value="3" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[adf_user]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlSchema" Name="[staging]">
+			<Relationship Name="Authorizer">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[staging].[Build_SourceTables]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;		
+
+
+	IF OBJECT_ID('staging.Source_Geography') IS NOT NULL
+		DROP TABLE staging.Source_Geography
+
+	CREATE TABLE staging.Source_Geography (
+		Country NVARCHAR(100)
+		,Region NVARCHAR(100)
+		)
+
+	IF OBJECT_ID('staging.Source_EventCategory') IS NOT NULL
+		DROP TABLE staging.Source_EventCategory
+
+	CREATE TABLE staging.Source_EventCategory (
+		 Category NVARCHAR(100)
+		,SubCategory NVARCHAR(100)
+		)
+
+	IF OBJECT_ID('staging.Source_Reseller') IS NOT NULL
+		DROP TABLE staging.Source_Reseller
+
+	CREATE TABLE staging.Source_Reseller (
+		 Reseller NVARCHAR(100)
+		)
+
+	IF OBJECT_ID('staging.Source_SalesChannel') IS NOT NULL
+		DROP TABLE staging.Source_SalesChannel
+
+	CREATE TABLE staging.Source_SalesChannel (
+		 SalesChannel NVARCHAR(100)
+		)
+
+	INSERT INTO staging.Source_SalesChannel (
+		 SalesChannel
+		)
+	VALUES ('Office'),('Web'),('Mobile')  
+
+	IF OBJECT_ID('staging.Source_FactSales') IS NOT NULL
+		DROP TABLE staging.Source_FactSales
+
+	CREATE TABLE staging.Source_FactSales (
+		 Reseller NVARCHAR(100)
+		,SalesChannel NVARCHAR(100)
+		,Category NVARCHAR(100)
+		,SubCategory NVARCHAR(100)
+		,Country NVARCHAR(100)
+		,Region NVARCHAR(100)
+		,PurchasedDate [date]
+		,PurchasedTickets [int]
+		,TotalAmount [money]
+		)
+
+	
+	SET NOCOUNT OFF;
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[staging].[Source_Geography]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography].[Country]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Geography].[Region]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory].[Category]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_EventCategory].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Reseller]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_Reseller].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel].[SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_SalesChannel].[SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Reseller]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[SalesChannel]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Category]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[SubCategory]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Country]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[Region]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[PurchasedDate]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[PurchasedTickets]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[Source_FactSales].[TotalAmount]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[money]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="2" />
+				<Property Name="Length" Value="1370" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;CREATE PROCEDURE [staging].[Build_SourceTables]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[Source_EventCategory]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_EventCategory].[Category]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_EventCategory].[SubCategory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[Source_FactSales]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[Reseller]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[SalesChannel]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[Category]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[SubCategory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[Country]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[Region]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[PurchasedDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[PurchasedTickets]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_FactSales].[TotalAmount]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[money]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[Source_Geography]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_Geography].[Country]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_Geography].[Region]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[Source_Reseller]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_Reseller].[Reseller]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[Source_SalesChannel]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[Source_SalesChannel].[SalesChannel]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+	</Model>
+</DataSchemaModel>
