@@ -1,0 +1,11 @@
+{
+	"name": "ls_kv_toptaleventplat",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-toptaleventplat.vault.azure.net/"
+		}
+	}
+}

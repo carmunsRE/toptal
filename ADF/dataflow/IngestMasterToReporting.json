@@ -1,0 +1,72 @@
+{
+	"name": "IngestMasterToReporting",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterGeography",
+						"type": "DatasetReference"
+					},
+					"name": "SourceGeography"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterevent",
+						"type": "DatasetReference"
+					},
+					"name": "SourceEventCategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterreseller",
+						"type": "DatasetReference"
+					},
+					"name": "SourceResellers"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLDB_Toptal_SourceGeography",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSourceGeography"
+				},
+				{
+					"dataset": {
+						"referenceName": "Dest_SQLToptal_SourceCategory",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSourceCategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "Dest_SQLToptal_SourceReseller",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSourceReseller"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DistinctRegion"
+				},
+				{
+					"name": "RemoveNulls"
+				},
+				{
+					"name": "DistrinctSubCat"
+				},
+				{
+					"name": "CleanReseller"
+				},
+				{
+					"name": "FilterNULL"
+				}
+			],
+			"script": "source(output(\n\t\tCity as string,\n\t\tRegion as string,\n\t\tCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceGeography\nsource(output(\n\t\tEvent as string,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceEventCategory\nsource(output(\n\t\tReseller as string,\n\t\tResellerID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SourceResellers\nSourceGeography aggregate(groupBy(Country,\n\t\tRegion),\n\tTotal = count(City)) ~> DistinctRegion\nDistinctRegion derive(CleanRegion = case(isNull(Region)||Region == 'NULL',Country,Region)) ~> RemoveNulls\nSourceEventCategory aggregate(groupBy(Category,\n\t\tSubCategory),\n\tTotal = count(Event)) ~> DistrinctSubCat\nSourceResellers derive(CleanReseller = case(!isNull(ResellerID)||Reseller=='VENUE ORGANIZER', Reseller)) ~> CleanReseller\nCleanReseller filter(!isNull(CleanReseller)) ~> FilterNULL\nRemoveNulls sink(input(\n\t\tGeographyID as integer,\n\t\tCountry as string,\n\t\tRegion as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tCountry,\n\t\tRegion = CleanRegion\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkSourceGeography\nDistrinctSubCat sink(input(\n\t\tCategory as string,\n\t\tSubCategory as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tCategory,\n\t\tSubCategory\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkSourceCategory\nFilterNULL sink(input(\n\t\tReseller as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tReseller = CleanReseller\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkSourceReseller"
+		}
+	}
+}

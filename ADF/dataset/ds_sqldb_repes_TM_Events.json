@@ -1,0 +1,76 @@
+{
+	"name": "ds_sqldb_repes_TM_Events",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqldb_repes",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "EventID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EventName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EventDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesDate",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SubCategory",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Promoter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "minPriceTickets",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "maxPriceTickets",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "VenueName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CityName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StateName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CountryCode",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TM_Events"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "source_sqldb_toptal_controltable",
+	"properties": {
+		"description": "The external control table is used to store the partition list of data source tables.",
+		"linkedServiceName": {
+			"referenceName": "ls_sqldb_toptal",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

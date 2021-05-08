@@ -1,0 +1,52 @@
+{
+	"name": "IngestSalesReporting",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_cleanSQL",
+						"type": "DatasetReference"
+					},
+					"name": "SQLSources"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_cleanCSV",
+						"type": "DatasetReference"
+					},
+					"name": "CSVSources"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_cleanXML",
+						"type": "DatasetReference"
+					},
+					"name": "XMLSources"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Dest_SQLToptal_SourceFact",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSourceFactSales"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Union1"
+				},
+				{
+					"name": "Aggregate1"
+				},
+				{
+					"name": "CleanRegion"
+				}
+			],
+			"script": "source(output(\n\t\tTransactionID as integer,\n\t\tMonthID as integer,\n\t\tResellerID as short,\n\t\tReseller as string,\n\t\tSalesChannel as string,\n\t\tEvent as string,\n\t\tEventDate as date,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCountry as string,\n\t\tRegion as string,\n\t\tCity as string,\n\t\tCustomerFirstName as string,\n\t\tCustomerLastName as string,\n\t\tPurchasedDate as date,\n\t\tPurchasedTickets as short,\n\t\tTotalAmount as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> SQLSources\nsource(output(\n\t\tTransactionID as integer,\n\t\tMonthID as integer,\n\t\tResellerID as short,\n\t\tReseller as string,\n\t\tSalesChannel as string,\n\t\tEvent as string,\n\t\tEventDate as date,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCountry as string,\n\t\tRegion as string,\n\t\tCity as string,\n\t\tCustomerFirstName as string,\n\t\tCustomerLastName as string,\n\t\tPurchasedDate as date,\n\t\tPurchasedTickets as short,\n\t\tTotalAmount as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> CSVSources\nsource(output(\n\t\tTransactionID as integer,\n\t\tMonthID as integer,\n\t\tResellerID as short,\n\t\tReseller as string,\n\t\tSalesChannel as string,\n\t\tEvent as string,\n\t\tEventDate as date,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCountry as string,\n\t\tRegion as string,\n\t\tCity as string,\n\t\tCustomerFirstName as string,\n\t\tCustomerLastName as string,\n\t\tPurchasedDate as date,\n\t\tPurchasedTickets as short,\n\t\tTotalAmount as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> XMLSources\nSQLSources, CSVSources, XMLSources union(byName: true)~> Union1\nUnion1 aggregate(groupBy(Reseller,\n\t\tSalesChannel,\n\t\tCategory,\n\t\tSubCategory,\n\t\tCountry,\n\t\tRegion,\n\t\tPurchasedDate),\n\tPurchasedTickets = sum(PurchasedTickets),\n\t\tTotalAmount = sum(TotalAmount)) ~> Aggregate1\nAggregate1 derive(CleanRegion = case(isNull(Region)||Region == 'NULL',Country,Region)) ~> CleanRegion\nCleanRegion sink(input(\n\t\tReseller as string,\n\t\tSalesChannel as string,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCountry as string,\n\t\tRegion as string,\n\t\tPurchasedDate as date,\n\t\tPurchasedTickets as integer,\n\t\tTotalAmount as decimal(19,4)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tmapColumn(\n\t\tReseller,\n\t\tSalesChannel,\n\t\tCategory,\n\t\tSubCategory,\n\t\tCountry,\n\t\tRegion = CleanRegion,\n\t\tPurchasedDate,\n\t\tPurchasedTickets,\n\t\tTotalAmount\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> SinkSourceFactSales"
+		}
+	}
+}

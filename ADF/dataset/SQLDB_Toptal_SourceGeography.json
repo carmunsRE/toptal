@@ -1,0 +1,31 @@
+{
+	"name": "SQLDB_Toptal_SourceGeography",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqldb_toptal",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "GeographyID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Region",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "Source_Geography"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

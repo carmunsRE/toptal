@@ -1,0 +1,19 @@
+{
+	"name": "ls_adl_toptaleventplat",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://dlstoptaleventplat.dfs.core.windows.net",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_toptaleventplat",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "secret-dls-toptaleventplat"
+			}
+		}
+	}
+}

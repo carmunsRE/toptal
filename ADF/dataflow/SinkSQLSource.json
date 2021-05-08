@@ -1,0 +1,45 @@
+{
+	"name": "SinkSQLSource",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_raw_sqlsource",
+						"type": "DatasetReference"
+					},
+					"name": "sqlsourcefiles"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterGeography",
+						"type": "DatasetReference"
+					},
+					"name": "MasterGeography"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "destination_adl_clean_sql",
+						"type": "DatasetReference"
+					},
+					"name": "SinkSQLSources"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CleanUpColumns"
+				},
+				{
+					"name": "LookupGeography"
+				},
+				{
+					"name": "Region"
+				}
+			],
+			"script": "source(output(\n\t\tTransactionID as integer '000',\n\t\t{Event Name} as string,\n\t\t{Event Date} as date 'yyyy-MM-dd',\n\t\t{Event Venue} as string,\n\t\t{Purchased Date} as date 'yyyy-MM-dd',\n\t\t{Purchased Tickets} as integer '000',\n\t\t{Total Amount} as string,\n\t\t{Sales Channel} as string,\n\t\t{Customer First Name} as string,\n\t\t{Customer Last Name} as string,\n\t\t{Office Location} as string,\n\t\tReseller as string,\n\t\t{Event Category} as string,\n\t\t{Event SubCategory} as string,\n\t\t{Venue City} as string,\n\t\t{Venue State} as string,\n\t\t{Venue Country} as string,\n\t\tMonthID as integer '000',\n\t\tResellerID as integer '000'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sqlsourcefiles\nsource(output(\n\t\tCity as string,\n\t\tRegion as string,\n\t\tCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterGeography\nsqlsourcefiles derive(CleanCategory = case({Event Category}=='' || isNull({Event Category}) ,'Undefined',{Event Category}),\n\t\tCleanSubCategory = case({Event SubCategory}=='' || isNull({Event SubCategory}) ,'Undefined',{Event SubCategory}),\n\t\tCleanCity = replace(trim({Venue City}),'  ',' '),\n\t\tCleanEvent = replace(trim({Event Name}),'  ',' ')) ~> CleanUpColumns\nCleanUpColumns, MasterGeography lookup(CleanCity == City,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupGeography\nLookupGeography derive(CleanRegion = case(isNull(Region),Country,Region)) ~> Region\nRegion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tfilePattern:(concat('Clean-EventsSalesSQL-Partition[n] - ',toString(currentUTC(),'yyyy-MM-dd'),'.csv')),\n\ttruncate: true,\n\tmapColumn(\n\t\tTransactionID,\n\t\tMonthID,\n\t\tResellerID,\n\t\tReseller,\n\t\tSalesChannel = {Sales Channel},\n\t\tEvent = CleanEvent,\n\t\tEventDate = {Event Date},\n\t\tCategory = CleanCategory,\n\t\tSubCategory = CleanSubCategory,\n\t\tCountry,\n\t\tRegion = CleanRegion,\n\t\tCity,\n\t\tCustomerFirstName = {Customer First Name},\n\t\tCustomerLastName = {Customer Last Name},\n\t\tPurchasedDate = {Purchased Date},\n\t\tPurchasedTickets = {Purchased Tickets},\n\t\tTotalAmount = {Total Amount}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkSQLSources"
+		}
+	}
+}

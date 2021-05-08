@@ -1,0 +1,93 @@
+{
+	"name": "source_adl_cleanXML",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adl_toptaleventplat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "clean/sales-xml-source",
+				"fileSystem": "event-platform"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "String"
+			},
+			{
+				"name": "MonthID",
+				"type": "String"
+			},
+			{
+				"name": "ResellerID",
+				"type": "String"
+			},
+			{
+				"name": "Reseller",
+				"type": "String"
+			},
+			{
+				"name": "SalesChannel",
+				"type": "String"
+			},
+			{
+				"name": "Event",
+				"type": "String"
+			},
+			{
+				"name": "EventDate",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "SubCategory",
+				"type": "String"
+			},
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "CustomerFirstName",
+				"type": "String"
+			},
+			{
+				"name": "CustomerLastName",
+				"type": "String"
+			},
+			{
+				"name": "PurchasedDate",
+				"type": "String"
+			},
+			{
+				"name": "PurchasedTickets",
+				"type": "String"
+			},
+			{
+				"name": "TotalAmount",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

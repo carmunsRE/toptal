@@ -1,0 +1,101 @@
+{
+	"name": "source_adl_raw_sqlsource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adl_toptaleventplat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw/sales-sql-source",
+				"fileSystem": "event-platform"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "TransactionID",
+				"type": "String"
+			},
+			{
+				"name": "Event Name",
+				"type": "String"
+			},
+			{
+				"name": "Event Date",
+				"type": "String"
+			},
+			{
+				"name": "Event Venue",
+				"type": "String"
+			},
+			{
+				"name": "Purchased Date",
+				"type": "String"
+			},
+			{
+				"name": "Purchased Tickets",
+				"type": "String"
+			},
+			{
+				"name": "Total Amount",
+				"type": "String"
+			},
+			{
+				"name": "Sales Channel",
+				"type": "String"
+			},
+			{
+				"name": "Customer First Name",
+				"type": "String"
+			},
+			{
+				"name": "Customer Last Name",
+				"type": "String"
+			},
+			{
+				"name": "Office Location",
+				"type": "String"
+			},
+			{
+				"name": "Reseller",
+				"type": "String"
+			},
+			{
+				"name": "Event Category",
+				"type": "String"
+			},
+			{
+				"name": "Event SubCategory",
+				"type": "String"
+			},
+			{
+				"name": "Venue City",
+				"type": "String"
+			},
+			{
+				"name": "Venue State",
+				"type": "String"
+			},
+			{
+				"name": "Venue Country",
+				"type": "String"
+			},
+			{
+				"name": "MonthID",
+				"type": "String"
+			},
+			{
+				"name": "ResellerID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

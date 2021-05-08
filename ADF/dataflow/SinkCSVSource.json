@@ -1,0 +1,65 @@
+{
+	"name": "SinkCSVSource",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_raw_csvsource",
+						"type": "DatasetReference"
+					},
+					"name": "csvsourcefiles"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterGeography",
+						"type": "DatasetReference"
+					},
+					"name": "MasterGeography"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterreseller",
+						"type": "DatasetReference"
+					},
+					"name": "MasterReseller"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterevent",
+						"type": "DatasetReference"
+					},
+					"name": "MasterEvent"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "destination_adl_clean_csv",
+						"type": "DatasetReference"
+					},
+					"name": "SinkCSVSources"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CleanUpColumns"
+				},
+				{
+					"name": "LookupGeography"
+				},
+				{
+					"name": "Region"
+				},
+				{
+					"name": "LookupReseller"
+				},
+				{
+					"name": "LookupEvent"
+				}
+			],
+			"script": "source(output(\n\t\tTransaction_x0020_ID as integer '000',\n\t\tEvent_x0020_name as string,\n\t\tNumber_x0020_of_x0020_purchased_x0020_tickets as integer '000',\n\t\tTotal_x0020_amount as string,\n\t\tSales_x0020_channel as string,\n\t\tCustomer_x0020_first_x0020_name as string,\n\t\tCustomer_x0020_last_x0020_name as string,\n\t\tOffice_x0020_location as string,\n\t\tCreated_Date as date 'yyyy-MM-dd'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\trowUrlColumn: 'SourceFileName') ~> csvsourcefiles\nsource(output(\n\t\tCity as string,\n\t\tRegion as string,\n\t\tCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterGeography\nsource(output(\n\t\tReseller as string,\n\t\tResellerID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterReseller\nsource(output(\n\t\tEvent as string,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterEvent\ncsvsourcefiles derive(ResellerID = left(right(SourceFileName,5),1),\n\t\tPurchasedDate = toDate(substring(SourceFileName,locate('DailySales_', SourceFileName)+length('DailySales_'),length('1900-01-01')),'yyyy-MM-dd')) ~> CleanUpColumns\nCleanUpColumns, MasterGeography lookup(trim(Office_x0020_location) == City,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupGeography\nLookupEvent derive(CleanRegion = case(isNull(Region),Country,Region),\n\t\tMonthID = toInteger(toString(PurchasedDate, 'yyyyMM'))) ~> Region\nLookupGeography, MasterReseller lookup(trim(CleanUpColumns@ResellerID) == MasterReseller@ResellerID,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupReseller\nLookupReseller, MasterEvent lookup(trim(Event_x0020_name) == Event\n\t&& trim(Office_x0020_location) == MasterEvent@City,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupEvent\nRegion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tfilePattern:(concat('Clean-EventsSalesCSV-Partition[n] - ',toString(currentUTC(),'yyyy-MM-dd'),'.csv')),\n\ttruncate: true,\n\tmapColumn(\n\t\tTransactionID = Transaction_x0020_ID,\n\t\tMonthID,\n\t\tResellerID = CleanUpColumns@ResellerID,\n\t\tReseller,\n\t\tSalesChannel = Sales_x0020_channel,\n\t\tEvent = Event_x0020_name,\n\t\tEventDate = Created_Date,\n\t\tCategory,\n\t\tSubCategory,\n\t\tCountry,\n\t\tRegion,\n\t\tCity = MasterGeography@City,\n\t\tCustomerFirstName = Customer_x0020_first_x0020_name,\n\t\tCustomerLastName = Customer_x0020_last_x0020_name,\n\t\tPurchasedDate,\n\t\tPurchasedTickets = Number_x0020_of_x0020_purchased_x0020_tickets,\n\t\tTotalAmount = Total_x0020_amount\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkCSVSources"
+		}
+	}
+}

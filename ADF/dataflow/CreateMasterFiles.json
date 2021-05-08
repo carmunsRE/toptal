@@ -1,0 +1,45 @@
+{
+	"name": "CreateMasterFiles",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_raw_sqlsource",
+						"type": "DatasetReference"
+					},
+					"name": "sqlsourcefiles"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "destination_adl_master",
+						"type": "DatasetReference"
+					},
+					"name": "SinkMasterEvents"
+				},
+				{
+					"dataset": {
+						"referenceName": "destination_adl_master",
+						"type": "DatasetReference"
+					},
+					"name": "SinkMasterReseller"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CleanUpColumns"
+				},
+				{
+					"name": "DistinctEvents"
+				},
+				{
+					"name": "DistinctReseller"
+				}
+			],
+			"script": "source(output(\n\t\tTransactionID as integer '000',\n\t\t{Event Name} as string,\n\t\t{Event Date} as date 'yyyy-MM-dd',\n\t\t{Event Venue} as string,\n\t\t{Purchased Date} as date 'yyyy-MM-dd',\n\t\t{Purchased Tickets} as integer '000',\n\t\t{Total Amount} as string,\n\t\t{Sales Channel} as string,\n\t\t{Customer First Name} as string,\n\t\t{Customer Last Name} as string,\n\t\t{Office Location} as string,\n\t\tReseller as string,\n\t\t{Event Category} as string,\n\t\t{Event SubCategory} as string,\n\t\t{Venue City} as string,\n\t\t{Venue State} as string,\n\t\t{Venue Country} as string,\n\t\tMonthID as integer '000',\n\t\tResellerID as integer '000'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> sqlsourcefiles\nsqlsourcefiles derive(CleanCategory = case({Event Category}=='' || isNull({Event Category}) ,'Undefined',{Event Category}),\n\t\tCleanSubCategory = case({Event SubCategory}=='' || isNull({Event SubCategory}) ,'Undefined',{Event SubCategory}),\n\t\tCleanCity = replace(trim({Venue City}),'  ',' '),\n\t\tCleanEvent = replace(trim({Event Name}),'  ',' ')) ~> CleanUpColumns\nCleanUpColumns aggregate(groupBy(CleanCategory,\n\t\tCleanSubCategory,\n\t\tCleanCity,\n\t\tCleanEvent),\n\tTotal = count(TransactionID)) ~> DistinctEvents\nsqlsourcefiles aggregate(groupBy(Reseller,\n\t\tResellerID),\n\tTotal = count(TransactionID)) ~> DistinctReseller\nDistinctEvents sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['MasterEvents.csv'],\n\tmapColumn(\n\t\tEvent = CleanEvent,\n\t\tCategory = CleanCategory,\n\t\tSubCategory = CleanSubCategory,\n\t\tCity = CleanCity\n\t),\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkMasterEvents\nDistinctReseller sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['MasterResellers.csv'],\n\tmapColumn(\n\t\tReseller,\n\t\tResellerID\n\t),\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkMasterReseller"
+		}
+	}
+}

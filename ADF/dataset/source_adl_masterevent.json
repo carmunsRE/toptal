@@ -1,0 +1,42 @@
+{
+	"name": "source_adl_masterevent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adl_toptaleventplat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "MasterEvents.csv",
+				"folderPath": "master",
+				"fileSystem": "event-platform"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Event",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "SubCategory",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

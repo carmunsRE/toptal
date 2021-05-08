@@ -1,0 +1,22 @@
+{
+	"name": "Dest_SQLToptal_SourceReseller",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sqldb_toptal",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Reseller",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "staging",
+			"table": "Source_Reseller"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

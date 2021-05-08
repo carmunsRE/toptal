@@ -1,0 +1,63 @@
+{
+	"name": "MasterPipe",
+	"properties": {
+		"activities": [
+			{
+				"name": "Ingest_SQLSource",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Pipe_Raw",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "CleanTransform_AllSources",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Ingest_SQLSource",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Pipe_Clean",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Reporting_SendSources",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "CleanTransform_AllSources",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Pipe_Reporting",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-05-07T18:31:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

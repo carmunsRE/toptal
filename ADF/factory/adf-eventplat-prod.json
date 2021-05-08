@@ -1,0 +1,9 @@
+{
+	"name": "adf-eventplat-prod",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "44939f63-2f4b-4117-a7c0-726faf963baa",
+		"tenantId": "e75638a4-47c4-406a-80ee-3ec4b808b703"
+	}
+}

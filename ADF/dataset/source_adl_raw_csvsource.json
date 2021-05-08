@@ -1,0 +1,61 @@
+{
+	"name": "source_adl_raw_csvsource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adl_toptaleventplat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "raw/sales-csv-source/2021-02",
+				"fileSystem": "event-platform"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Transaction_x0020_ID",
+				"type": "String"
+			},
+			{
+				"name": "Event_x0020_name",
+				"type": "String"
+			},
+			{
+				"name": "Number_x0020_of_x0020_purchased_x0020_tickets",
+				"type": "String"
+			},
+			{
+				"name": "Total_x0020_amount",
+				"type": "String"
+			},
+			{
+				"name": "Sales_x0020_channel",
+				"type": "String"
+			},
+			{
+				"name": "Customer_x0020_first_x0020_name",
+				"type": "String"
+			},
+			{
+				"name": "Customer_x0020_last_x0020_name",
+				"type": "String"
+			},
+			{
+				"name": "Office_x0020_location",
+				"type": "String"
+			},
+			{
+				"name": "Created_Date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,125 @@
+{
+	"name": "Pipe_Reporting",
+	"properties": {
+		"activities": [
+			{
+				"name": "DropCreateSinkTables",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "staging.Build_SourceTables"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_sqldb_toptal",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "IngestMasterReporting",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "DropCreateSinkTables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "IngestMasterToReporting",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "IngestSalesReporting",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "DropCreateSinkTables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "IngestSalesReporting",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Taxonomy",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "IngestMasterReporting",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "IngestSalesReporting",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[Build_Taxonomy]"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_sqldb_toptal",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-05-07T18:41:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,65 @@
+{
+	"name": "SinkXMLSource",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_adl_raw_xmlsource",
+						"type": "DatasetReference"
+					},
+					"name": "xmlsourcefiles"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterGeography",
+						"type": "DatasetReference"
+					},
+					"name": "MasterGeography"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterreseller",
+						"type": "DatasetReference"
+					},
+					"name": "MasterReseller"
+				},
+				{
+					"dataset": {
+						"referenceName": "source_adl_masterevent",
+						"type": "DatasetReference"
+					},
+					"name": "MasterEvent"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "destination_adl_clean_xml",
+						"type": "DatasetReference"
+					},
+					"name": "SinkCSVSources"
+				}
+			],
+			"transformations": [
+				{
+					"name": "LookupGeography"
+				},
+				{
+					"name": "Region"
+				},
+				{
+					"name": "LookupReseller"
+				},
+				{
+					"name": "LookupEvent"
+				},
+				{
+					"name": "FlattenXML"
+				}
+			],
+			"script": "source(output(\n\t\ttransactions as ({@date} as date, {@reseller-id} as short, transaction as ({@id} as integer, customer as (firstName as string, lastName as string), dateCreated as string, eventName as string, numberOfPurchasedTickets as short, officeLocation as string, salesChannel as string, totalAmount as double)[])\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tvalidationMode: 'none',\n\tnamespaces: false) ~> xmlsourcefiles\nsource(output(\n\t\tCity as string,\n\t\tRegion as string,\n\t\tCountry as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterGeography\nsource(output(\n\t\tReseller as string,\n\t\tResellerID as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterReseller\nsource(output(\n\t\tEvent as string,\n\t\tCategory as string,\n\t\tSubCategory as string,\n\t\tCity as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> MasterEvent\nFlattenXML, MasterGeography lookup(trim(FlattenXML@City) == MasterGeography@City,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupGeography\nLookupEvent derive(CleanRegion = case(isNull(Region),Country,Region),\n\t\tMonthID = toInteger(toString(PurchasedDate, 'yyyyMM'))) ~> Region\nLookupGeography, MasterReseller lookup(toString(FlattenXML@ResellerID) == MasterReseller@ResellerID,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupReseller\nLookupReseller, MasterEvent lookup(trim(FlattenXML@Event) == MasterEvent@Event\n\t&& trim(FlattenXML@City) == MasterEvent@City,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> LookupEvent\nxmlsourcefiles foldDown(unroll(transactions.transaction, transactions.transaction),\n\tmapColumn(\n\t\tPurchasedDate = transactions.{@date},\n\t\tResellerID = transactions.{@reseller-id},\n\t\tTransactionID = transactions.transaction.{@id},\n\t\tCustomerFirstName = transactions.transaction.customer.firstName,\n\t\tCustomerLastName = transactions.transaction.customer.lastName,\n\t\tEventDate = transactions.transaction.dateCreated,\n\t\tEvent = transactions.transaction.eventName,\n\t\tPurchasedTickets = transactions.transaction.numberOfPurchasedTickets,\n\t\tCity = transactions.transaction.officeLocation,\n\t\tSalesChannel = transactions.transaction.salesChannel,\n\t\tTotalAmount = transactions.transaction.totalAmount\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> FlattenXML\nRegion sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tfilePattern:(concat('Clean-EventsSalesXML-Partition[n] - ',toString(currentUTC(),'yyyy-MM-dd'),'.csv')),\n\ttruncate: true,\n\tmapColumn(\n\t\tTransactionID,\n\t\tMonthID,\n\t\tResellerID = MasterReseller@ResellerID,\n\t\tReseller,\n\t\tSalesChannel,\n\t\tEvent = FlattenXML@Event,\n\t\tEventDate,\n\t\tCategory,\n\t\tSubCategory,\n\t\tCountry,\n\t\tRegion,\n\t\tCity = MasterGeography@City,\n\t\tCustomerFirstName,\n\t\tCustomerLastName,\n\t\tPurchasedDate,\n\t\tPurchasedTickets,\n\t\tTotalAmount\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkCSVSources"
+		}
+	}
+}

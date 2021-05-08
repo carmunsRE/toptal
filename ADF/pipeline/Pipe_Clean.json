@@ -1,0 +1,83 @@
+{
+	"name": "Pipe_Clean",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Master Files",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SubPipe_Clean_MasterFiles",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Sink SQL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Master Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SubPipe_Clean_SinkSQLSources",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Sink CSV",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Master Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SubPipe_Clean_SinkCSVSources",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Sink XML",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Master Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "SubPipe_Clean_SinkXMLSources",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-05-07T18:31:51Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

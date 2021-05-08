@@ -1,0 +1,46 @@
+{
+	"name": "destination_adl_raw_sqlsource",
+	"properties": {
+		"description": "Connection to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "ls_adl_toptaleventplat",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Data_Destination_Container": {
+				"type": "String"
+			},
+			"Data_Destination_Directory": {
+				"type": "String"
+			},
+			"File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@{dataset().File_Name}",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@{dataset().Data_Destination_Directory}",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@{dataset().Data_Destination_Container}",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
